@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 import { addContact, deleteContact, filterContact } from "./actions";
 
 const itemContactReducer = createReducer([], {
-  [addContact.type]: (state, action) => {
+  [addContact]: (state, action) => {
     const search = state.find(
       (el) => el.name.toLowerCase() === action.payload.name.toLowerCase()
     );
@@ -14,14 +14,14 @@ const itemContactReducer = createReducer([], {
     }
     return [...state, action.payload];
   },
-  [deleteContact.type]: (state, action) => {
+  [deleteContact]: (state, action) => {
     const filtered = state.filter((el) => el.id !== action.payload);
     return [...filtered];
   },
 });
 
 const filterContactReducer = createReducer("", {
-  [filterContact.type]: (state, action) => action.payload,
+  [filterContact]: (state, action) => action.payload,
 });
 
 export default combineReducers({
